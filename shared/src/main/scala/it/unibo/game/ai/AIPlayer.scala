@@ -10,14 +10,14 @@ import it.unibo.game.core.Player
 object AIPlayer:
   def deterministic(using ExecutionContext): PlayerLogic = (player, board) =>
     Future {
-      avaiableMarks(board).head
+      availableMarks(board).head
     }
 
   def apply()(using ExecutionContext, Random): PlayerLogic = (player, board) =>
     Future {
-      summon[Random].shuffle(avaiableMarks(board)).head
+      summon[Random].shuffle(availableMarks(board)).head
     }
 
-  private def avaiableMarks(board: Board) = (0 to Board.width) map (x => x -> board.firstAvailableRow(x)) collect {
+  private def availableMarks(board: Board) = (0 to Board.width) map (x => x -> board.firstAvailableRow(x)) collect {
     case (x, Some(y)) => x
   }
