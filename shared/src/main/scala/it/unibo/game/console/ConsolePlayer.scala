@@ -9,5 +9,5 @@ object ConsolePlayer:
   def apply(using ExecutionContext): PlayerLogic = (player, board) =>
     Future {
       println(s"$player turn:")
-      StdIn.readInt
+      StdIn.readInt()
     }
