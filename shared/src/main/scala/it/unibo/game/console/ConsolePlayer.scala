@@ -7,7 +7,6 @@ import scala.io.StdIn
 import scala.concurrent.Future
 object ConsolePlayer:
   def apply(using ExecutionContext): PlayerLogic = (player, board) =>
-    Future {
+    Future:
       println(s"$player turn:")
       StdIn.readInt()
-    }

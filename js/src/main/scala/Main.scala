@@ -12,13 +12,13 @@ import scalajs.js
 import it.unibo.game.ai.AIPlayer
 import scala.util.Random
 
-@main def main(): Unit = 
+@main def main(): Unit =
   given Random = Random()
   val delayBetweenAi = 1000
-  def delayGame(delay: Double, logic: PlayerLogic): PlayerLogic = 
-    (player, board) => 
+  def delayGame(delay: Double, logic: PlayerLogic): PlayerLogic =
+    (player, board) =>
       val p = Promise[Unit]()
-      js.timers.setTimeout(delay) { p.success(()) }
+      js.timers.setTimeout(delay)(p.success(()))
       p.future.flatMap(_ => logic.next(player, board))
   val aiLogic = delayGame(delayBetweenAi, AIPlayer())
   println("Welcome!!!")
